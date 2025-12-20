@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PB Jets – Fly private. Own your time. Private aviation from Palm Beach.">
+    <title>PB Jets – Fly Private. Own Your Time.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Basically+A+Sans+Serif:wght@300;400;500&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("VITE_EMAILJS_PUBLIC_KEY"); 
+        })();
+    </script>
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            overscroll-behavior: none;
+        }
+
+        html::-webkit-scrollbar {
+            display: none;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            overscroll-behavior: none;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            background: linear-gradient(180deg, #1F4466 0%, #102540 100%);
+            background-attachment: fixed;
+            color: #e8e8e8;
+            font-family: 'Basically A Sans Serif', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 300;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        main {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+
+        .intro {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: linear-gradient(180deg, #1F4466 0%, #102540 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 2rem;
+        }
+
+        .intro.fade-out {
+            animation: introFadeOut 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .intro-content {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: introReveal 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro-tagline {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: clamp(1.75rem, 5vw, 3.5rem);
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            color: #e8e8e8;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-brand {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: rgba(232, 232, 232, 0.4);
+        }
+
+        @keyframes introReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes introFadeOut {
+            to { opacity: 0; visibility: hidden; pointer-events: none; }
+        }
+
+        .site {
+            opacity: 0;
+            visibility: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .site.visible {
+            opacity: 1;
+            visibility: visible;
+            animation: siteReveal 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes siteReveal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 300;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(245, 245, 245, 0.7);
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover { color: #f5f5f5; }
+
+        nav { display: flex; gap: 3rem; }
+
+        nav a {
+            color: rgba(245, 245, 245, 0.4);
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover { color: rgba(245, 245, 245, 0.85); }
+
+        .hero {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: transparent;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: clamp(3rem, 10vw, 6.5rem);
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            line-height: 1.05;
+            color: #e8e8e8;
+            margin-bottom: 2rem;
+        }
+
+        .hero-subtitle {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+            font-weight: 300;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: rgba(232, 232, 232, 0.7);
+            margin-bottom: 4rem;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.125rem 2.5rem;
+            border: 1px solid rgba(192, 192, 192, 0.3);
+            background: transparent;
+            color: #e8e8e8;
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-cta:hover {
+            background: #c0c0c0;
+            border-color: #c0c0c0;
+            color: #050505;
+        }
+
+        .hero-cta svg {
+            width: 14px; height: 14px; stroke-width: 1.5;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-cta:hover svg { transform: translateX(4px); }
+
+        .fleet { padding: 8rem 4rem 10rem; background: transparent; }
+        .fleet-inner { max-width: 1320px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 5rem; }
+        .section-header h2 {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.25rem);
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            color: #e8e8e8;
+            margin-bottom: 1rem;
+        }
+        .section-header p {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            color: rgba(232, 232, 232, 0.4);
+        }
+
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .aircraft-card {
+            background: rgba(16, 37, 64, 0.6);
+            border: 1px solid rgba(192, 192, 192, 0.1);
+            padding: 2.5rem 2rem 2rem;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .aircraft-card:hover {
+            border-color: rgba(192, 192, 192, 0.25);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .aircraft-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, #a0a0a0, #d0d0d0);
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .aircraft-card:hover::before { transform: scaleX(1); }
+
+        .card-action {
+            position: absolute; top: 1.75rem; right: 2rem;
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 0.65rem; font-weight: 400; letter-spacing: 0.15em;
+            text-transform: uppercase; color: rgba(232, 232, 232, 0.35);
+            opacity: 0; transform: translateX(-8px); transition: all 0.3s ease;
+        }
+
+        .aircraft-card:hover .card-action { opacity: 1; transform: translateX(0); color: #c0c0c0; }
+
+        .aircraft-silhouette {
+            height: 160px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;
+        }
+
+        .aircraft-silhouette img {
+            max-width: 340px; max-height: 150px; width: auto; height: auto;
+            object-fit: contain; opacity: 0.9;
+            transition: opacity 0.3s ease, transform 0.4s ease;
+        }
+
+        .aircraft-card:hover .aircraft-silhouette img { opacity: 1; transform: scale(1.04); }
+
+        .aircraft-info h3 {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 1.625rem; font-weight: 300; letter-spacing: 0.02em;
+            color: #e8e8e8; margin-bottom: 0.75rem;
+        }
+
+        .aircraft-example {
+            display: inline-block; font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 0.7rem; font-weight: 300; letter-spacing: 0.08em;
+            color: rgba(192, 192, 192, 0.7); padding: 0.5rem 1rem;
+            border: 1px solid rgba(192, 192, 192, 0.2); margin-bottom: 1.5rem;
+        }
+
+        .aircraft-specs {
+            display: flex; gap: 2rem; padding-top: 1.5rem;
+            border-top: 1px solid rgba(192, 192, 192, 0.15);
+        }
+
+        .spec { display: flex; flex-direction: column; gap: 0.375rem; }
+        .spec-label {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 0.6rem; font-weight: 500; letter-spacing: 0.18em;
+            text-transform: uppercase; color: rgba(232, 232, 232, 0.7);
+        }
+        .spec-value {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 0.95rem; font-weight: 300; letter-spacing: 0.02em; color: #e8e8e8;
+        }
+
+        .overlay {
+            position: fixed; inset: 0; background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(20px); z-index: 2000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .overlay.active { opacity: 1; visibility: visible; }
+
+        .overlay-content {
+            width: 100%; max-width: 500px; padding: 4rem;
+            background: rgba(16, 37, 64, 0.4); border: 1px solid rgba(192, 192, 192, 0.1);
+            position: relative; transform: translateY(40px) scale(0.98);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .overlay.active .overlay-content { transform: translateY(0) scale(1); }
+
+        .overlay-close {
+            position: absolute; top: 2rem; right: 2rem; background: transparent;
+            border: none; color: rgba(192, 192, 192, 0.4); cursor: pointer;
+            font-size: 1.5rem; transition: color 0.3s ease;
+        }
+
+        .overlay-close:hover { color: #fff; }
+
+        .overlay-title {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 2rem; font-weight: 300; letter-spacing: 0.05em;
+            color: #f5f5f5; margin-bottom: 3rem; text-align: center;
+        }
+
+        .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-label {
+            font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em;
+            text-transform: uppercase; color: rgba(192, 192, 192, 0.6);
+        }
+        .form-input, .form-textarea {
+            background: rgba(5, 5, 5, 0.2); border: 1px solid rgba(192, 192, 192, 0.15);
+            padding: 1rem; color: #f5f5f5; font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 0.9rem; font-weight: 300; transition: all 0.3s ease; outline: none;
+        }
+        .form-input:focus, .form-textarea:focus {
+            border-color: rgba(192, 192, 192, 0.5); background: rgba(5, 5, 5, 0.4);
+        }
+        .form-textarea { min-height: 120px; resize: none; }
+        .form-submit {
+            margin-top: 1rem; padding: 1.125rem; background: transparent;
+            border: 1px solid rgba(192, 192, 192, 0.3); color: #f5f5f5;
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 0.75rem; font-weight: 400; letter-spacing: 0.2em;
+            text-transform: uppercase; cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .form-submit:hover { background: #c0c0c0; border-color: #c0c0c0; color: #050505; }
+
+        footer {
+            padding: 4rem 4rem;
+            text-align: center;
+            background: transparent;
+        }
+
+        .footer-tagline {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 1.125rem; font-weight: 300; letter-spacing: 0.04em;
+            color: rgba(232, 232, 232, 0.5); margin-bottom: 0.5rem;
+        }
+
+        .footer-sub-tag {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 0.7rem; font-weight: 400; letter-spacing: 0.2em;
+            text-transform: uppercase; color: rgba(192, 192, 192, 0.6); margin-bottom: 1.25rem;
+        }
+
+        .footer-info {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 0.7rem; font-weight: 300; letter-spacing: 0.12em;
+            color: rgba(232, 232, 232, 0.6);
+        }
+
+        .footer-disclaimer {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 0.7rem; font-weight: 300; line-height: 1.6;
+            letter-spacing: 0.02em; color: rgba(232, 232, 232, 0.75);
+            max-width: 800px; margin: 2rem auto 0; padding-top: 2rem;
+            border-top: 1px solid rgba(192, 192, 192, 0.1);
+        }
+
+        @media (max-width: 900px) {
+            .hero-nav { padding: 2rem 2.5rem; }
+            nav { gap: 2rem; }
+            .fleet { padding: 6rem 2.5rem 8rem; }
+            .fleet-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+            footer { padding: 3rem 2.5rem; }
+            .footer-disclaimer { font-size: 0.65rem; padding-top: 1.5rem; margin-top: 1.5rem; }
+        }
+
+        @media (max-width: 449px) {
+            .hero-nav { padding: 1.5rem; flex-direction: column; gap: 1.25rem; }
+            .logo { font-size: 1.1rem; }
+            nav { gap: 1.75rem; }
+            nav a { font-size: 0.65rem; }
+            .hero h1 { font-size: 2.75rem; }
+            .hero-subtitle { font-size: 0.65rem; letter-spacing: 0.25em; margin-bottom: 3rem; }
+            .hero-cta { padding: 1rem 2rem; font-size: 0.7rem; }
+            .fleet { padding: 4rem 1.25rem 6rem; }
+            .section-header { margin-bottom: 3rem; }
+            .section-header h2 { font-size: 1.75rem; }
+            .fleet-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+            .aircraft-card { padding: 2rem 1.5rem 1.75rem; }
+            .card-action { opacity: 1; transform: translateX(0); top: 1.5rem; right: 1.5rem; }
+            .aircraft-silhouette { height: 120px; margin-bottom: 1.5rem; }
+            .aircraft-silhouette img { max-width: 280px; max-height: 110px; }
+            .aircraft-info h3 { font-size: 1.375rem; }
+            .aircraft-specs { gap: 1.25rem; flex-wrap: wrap; }
+            footer { padding: 3rem 1.5rem; }
+            .footer-tagline { font-size: 1rem; }
+            .footer-info { font-size: 0.65rem; }
+            .footer-disclaimer { font-size: 0.6rem; padding-top: 1.5rem; margin-top: 1.5rem; }
+            .overlay-content { padding: 2.5rem 1.5rem; max-width: 90%; }
+        }
+
+        /* ═══════════════════════════════════════════
+           FLIGHT PATH TRACKER (commented out)
+           ═══════════════════════════════════════════
+        .flight-path-container {
+            position: fixed;
+            top: 0;
+            left: 2.5rem;
+            width: 1px;
+            height: 100vh;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .flight-path-container.visible {
+            opacity: 1;
+        }
+
+        .flight-tether {
+            position: absolute;
+            top: 74vh;
+            bottom: 10vh;
+            left: 0;
+            width: 1px;
+            background: rgba(192, 192, 192, 0.12);
+        }
+
+        .tracker-plane {
+            position: absolute;
+            left: 50%;
+            top: 10vh;
+            transform: translate(-50%, -50%);
+            width: 28px;
+            height: 28px;
+            transition: top 0.08s ease-out;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+        }
+
+        .tracker-plane img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0.85;
+        }
+
+        @media (max-width: 900px) {
+            .flight-path-container {
+                left: 1.25rem;
+            }
+            .tracker-plane {
+                width: 22px;
+                height: 22px;
+            }
+        }
+
+        @media (max-width: 449px) {
+            .flight-path-container {
+                display: none;
+            }
+        }
+        */
+    </style>
+</head>
+<body>
+
+    <div class="intro" id="intro">
+        <div class="intro-content">
+            <p class="intro-tagline">Fly private. Own your time.</p>
+            <p class="intro-brand">PB Jets</p>
+        </div>
+    </div>
+
+    <!-- Flight Path Tracker (commented out)
+    <div class="flight-path-container" id="flightPath">
+        <div class="flight-tether"></div>
+        <div class="tracker-plane" id="scrollPlane">
+            <img src="images/plane-icon.png" alt="Flight Tracker">
+        </div>
+    </div>
+    -->
+
+    <div class="site" id="site">
+        <main>
+            <section class="hero" id="home">
+                <div class="hero-nav">
+                    <div class="logo">PB Jets</div>
+                    <nav>
+                        <a href="#fleet">Fleet</a>
+                        <a href="#" onclick="openOverlay('General Inquiry'); return false;">Contact</a>
+                    </nav>
+                </div>
+                <div class="hero-content">
+                    <h1>PB Jets</h1>
+                    <p class="hero-subtitle">No logos · No noise · Just flight</p>
+                    <a href="#fleet" class="hero-cta">
+                        View Fleet
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </section>
+
+            <section class="fleet" id="fleet">
+                <div class="fleet-inner">
+                    <div class="section-header">
+                        <h2>The Fleet</h2>
+                        <p>Select your aircraft category</p>
+                    </div>
+
+                    <div class="fleet-grid">
+                        <article class="aircraft-card" onclick="openOverlay('Inquiry: Turboprop')">
+                            <span class="card-action">Inquire →</span>
+                            <div class="aircraft-silhouette"><img src="images/TURBOPROP.png" alt="Turboprop"></div>
+                            <div class="aircraft-info">
+                                <h3>Turboprop</h3>
+                                <span class="aircraft-example">King Air 350 or similar</span>
+                                <div class="aircraft-specs">
+                                    <div class="spec"><span class="spec-label">Passengers</span><span class="spec-value">6–9</span></div>
+                                    <div class="spec"><span class="spec-label">Range</span><span class="spec-value">1,500 nm</span></div>
+                                    <div class="spec"><span class="spec-label">Speed</span><span class="spec-value">310 kts</span></div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="aircraft-card" onclick="openOverlay('Inquiry: Very Light Jet')">
+                            <span class="card-action">Inquire →</span>
+                            <div class="aircraft-silhouette"><img src="images/VERY-LIGHT-JET.png" alt="Very Light Jet"></div>
+                            <div class="aircraft-info">
+                                <h3>Very Light Jet</h3>
+                                <span class="aircraft-example">Phenom 100 or similar</span>
+                                <div class="aircraft-specs">
+                                    <div class="spec"><span class="spec-label">Passengers</span><span class="spec-value">4–5</span></div>
+                                    <div class="spec"><span class="spec-label">Range</span><span class="spec-value">1,200 nm</span></div>
+                                    <div class="spec"><span class="spec-label">Speed</span><span class="spec-value">400 kts</span></div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="aircraft-card" onclick="openOverlay('Inquiry: Light Jet')">
+                            <span class="card-action">Inquire →</span>
+                            <div class="aircraft-silhouette"><img src="images/LIGHT-JET.png" alt="Light Jet"></div>
+                            <div class="aircraft-info">
+                                <h3>Light Jet</h3>
+                                <span class="aircraft-example">Citation CJ3 or similar</span>
+                                <div class="aircraft-specs">
+                                    <div class="spec"><span class="spec-label">Passengers</span><span class="spec-value">6–7</span></div>
+                                    <div class="spec"><span class="spec-label">Range</span><span class="spec-value">2,000 nm</span></div>
+                                    <div class="spec"><span class="spec-label">Speed</span><span class="spec-value">450 kts</span></div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="aircraft-card" onclick="openOverlay('Inquiry: Midsize Jet')">
+                            <span class="card-action">Inquire →</span>
+                            <div class="aircraft-silhouette"><img src="images/MIDSIZE-JET.png" alt="Midsize Jet"></div>
+                            <div class="aircraft-info">
+                                <h3>Midsize Jet</h3>
+                                <span class="aircraft-example">Hawker 800XP or similar</span>
+                                <div class="aircraft-specs">
+                                    <div class="spec"><span class="spec-label">Passengers</span><span class="spec-value">7–8</span></div>
+                                    <div class="spec"><span class="spec-label">Range</span><span class="spec-value">2,700 nm</span></div>
+                                    <div class="spec"><span class="spec-label">Speed</span><span class="spec-value">480 kts</span></div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="aircraft-card" onclick="openOverlay('Inquiry: Super Midsize')">
+                            <span class="card-action">Inquire →</span>
+                            <div class="aircraft-silhouette"><img src="images/SUPERMID-JET.png" alt="Super Midsize"></div>
+                            <div class="aircraft-info">
+                                <h3>Super Midsize</h3>
+                                <span class="aircraft-example">Challenger 350 or similar</span>
+                                <div class="aircraft-specs">
+                                    <div class="spec"><span class="spec-label">Passengers</span><span class="spec-value">8–9</span></div>
+                                    <div class="spec"><span class="spec-label">Range</span><span class="spec-value">3,600 nm</span></div>
+                                    <div class="spec"><span class="spec-label">Speed</span><span class="spec-value">500 kts</span></div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="aircraft-card" onclick="openOverlay('Inquiry: Heavy Jet')">
+                            <span class="card-action">Inquire →</span>
+                            <div class="aircraft-silhouette"><img src="images/HEAVY-JET.png" alt="Heavy Jet"></div>
+                            <div class="aircraft-info">
+                                <h3>Heavy Jet</h3>
+                                <span class="aircraft-example">Gulfstream G450 or similar</span>
+                                <div class="aircraft-specs">
+                                    <div class="spec"><span class="spec-label">Passengers</span><span class="spec-value">10–14</span></div>
+                                    <div class="spec"><span class="spec-label">Range</span><span class="spec-value">4,500 nm</span></div>
+                                    <div class="spec"><span class="spec-label">Speed</span><span class="spec-value">500 kts</span></div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="aircraft-card" onclick="openOverlay('Inquiry: Ultra Long Range')">
+                            <span class="card-action">Inquire →</span>
+                            <div class="aircraft-silhouette"><img src="images/ULTRA-LONG-RANGE-JET.png" alt="Ultra Long Range"></div>
+                            <div class="aircraft-info">
+                                <h3>Ultra Long Range</h3>
+                                <span class="aircraft-example">Gulfstream G650 or similar</span>
+                                <div class="aircraft-specs">
+                                    <div class="spec"><span class="spec-label">Passengers</span><span class="spec-value">12–18</span></div>
+                                    <div class="spec"><span class="spec-label">Range</span><span class="spec-value">7,000 nm</span></div>
+                                    <div class="spec"><span class="spec-label">Speed</span><span class="spec-value">516 kts</span></div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p class="footer-tagline">Fly private. Own your time.</p>
+            <p class="footer-sub-tag">Veteran-owned</p>
+            <p class="footer-info">© 2025 PB Jets · Palm Beach · Discretion assured</p>
+            <p class="footer-disclaimer">PB Jets is an "Air Charter Broker" under DOT Regulations operating under Part 295 Regulations on behalf of our clients. PB Jets does not own or operate any aircraft. All flights are operated by registered Part 135 Operators or the Foreign Equivalent that meet and exceed standards set by the FAA and internal requirements set by PB Jets.</p>
+        </footer>
+    </div>
+
+    <div class="overlay" id="contactOverlay">
+        <div class="overlay-content">
+            <button class="overlay-close" onclick="closeOverlay()">&times;</button>
+            <h2 class="overlay-title" id="overlayTitle">Inquiry</h2>
+            <form class="contact-form" id="overlayForm" onsubmit="handleFormSubmit(event, this)">
+                <input type="hidden" name="subject" id="overlaySubject" value="General Inquiry">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" name="user_name" class="form-input" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" name="user_email" class="form-input" required placeholder="john@example.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Message</label>
+                    <textarea name="message" class="form-textarea" required placeholder="How can we assist you?"></textarea>
+                </div>
+                <button type="submit" class="form-submit" id="overlaySubmitBtn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        window.scrollTo(0, 0);
+        
+        const overlay = document.getElementById('contactOverlay');
+        const overlayTitle = document.getElementById('overlayTitle');
+        const overlaySubject = document.getElementById('overlaySubject');
+        const overlayForm = document.getElementById('overlayForm');
+
+        function openOverlay(subject = 'General Inquiry') {
+            overlaySubject.value = subject;
+            overlayTitle.textContent = subject.includes(':') ? subject.split(': ')[1] : 'Contact Us';
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeOverlay() {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => overlayForm.reset(), 500);
+        }
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeOverlay();
+        });
+
+        function handleFormSubmit(event, form) {
+            event.preventDefault();
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            const templateParams = {
+                user_name: form.user_name.value,
+                user_email: form.user_email.value,
+                message: form.message.value,
+                subject: form.overlaySubject ? form.overlaySubject.value : 'General Inquiry'
+            };
+
+            emailjs.send('VITE_EMAILJS_SERVICE_ID', 'VITE_EMAILJS_TEMPLATE_ID', templateParams)
+                .then(() => {
+                    submitBtn.textContent = 'Message Sent';
+                    setTimeout(() => {
+                        closeOverlay();
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                    }, 2000);
+                }, (err) => {
+                    submitBtn.textContent = 'Error - Try Again';
+                    submitBtn.disabled = false;
+                    console.error('EmailJS Error:', err);
+                });
+        }
+
+        const intro = document.getElementById('intro');
+        const site = document.getElementById('site');
+
+        setTimeout(() => {
+            intro.classList.add('fade-out');
+            site.classList.add('visible');
+            window.scrollTo(0, 0);
+        }, 3200);
+
+        /* Flight Path Tracker - commented out
+        const flightPath = document.getElementById('flightPath');
+        const scrollPlane = document.getElementById('scrollPlane');
+
+        // Show flight path after intro
+        // flightPath.classList.add('visible');
+
+        function updatePlanePosition() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            
+            if (docHeight <= 0) {
+                scrollPlane.style.top = '74vh';
+                return;
+            }
+            
+            const scrollPercent = Math.min(scrollTop / docHeight, 1);
+            const minTop = 74;
+            const maxTop = 90;
+            const currentTop = minTop + (scrollPercent * (maxTop - minTop));
+            
+            scrollPlane.style.top = `${currentTop}vh`;
+        }
+
+        window.addEventListener('scroll', updatePlanePosition, { passive: true });
+        updatePlanePosition();
+        */
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                // Only handle actual anchor links, not bare "#"
+                if (href && href.startsWith('#') && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+[build]
+  publish = "dist"
+  command = "chmod +x build.sh && ./build.sh"
+
+[context.production.environment]
+  NODE_ENV = "production"
+
