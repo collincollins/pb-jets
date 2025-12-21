@@ -176,7 +176,7 @@
         nav a {
             color: rgba(245, 245, 245, 0.7);
             text-decoration: none;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 300;
             letter-spacing: 0.25em;
             text-transform: uppercase;
@@ -449,11 +449,87 @@
             border-top: 1px solid rgba(192, 192, 192, 0.1);
         }
 
+        .management { padding: 8rem 4rem 10rem; background: transparent; }
+        .management-inner { max-width: 1320px; margin: 0 auto; }
+
+        .management-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 1.75rem;
+            margin-bottom: 4rem;
+        }
+
+        .management-card {
+            background: rgba(16, 37, 64, 0.6);
+            border: 1px solid rgba(192, 192, 192, 0.1);
+            padding: 2.5rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .management-card:hover {
+            border-color: rgba(192, 192, 192, 0.25);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .management-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, #a0a0a0, #d0d0d0);
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .management-card:hover::before { transform: scaleX(1); }
+
+        .management-card h3 {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 1.625rem; font-weight: 300; letter-spacing: 0.02em;
+            color: #e8e8e8; margin-bottom: 1rem;
+        }
+
+        .management-card p {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 0.9rem; font-weight: 300; letter-spacing: 0.02em;
+            color: rgba(232, 232, 232, 0.7); line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .management-cta {
+            margin-top: 2rem;
+            padding: 1.125rem 2.5rem;
+            border: 1px solid rgba(192, 192, 192, 0.3);
+            background: transparent;
+            color: #e8e8e8;
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            display: inline-block;
+        }
+
+        .management-cta:hover {
+            background: #c0c0c0;
+            border-color: #c0c0c0;
+            color: #050505;
+        }
+
         @media (max-width: 900px) {
             .hero-nav { padding: 2rem 2.5rem; }
             nav { gap: 2rem; }
             .fleet { padding: 6rem 2.5rem 8rem; }
             .fleet-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+            .management { padding: 6rem 2.5rem 8rem; }
+            .management-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
             footer { padding: 3rem 2.5rem; }
             .footer-disclaimer { font-size: 0.65rem; padding-top: 1.5rem; margin-top: 1.5rem; }
         }
@@ -471,6 +547,11 @@
             .section-header h2 { font-size: 1.75rem; }
             .fleet-grid { grid-template-columns: 1fr; gap: 1.25rem; }
             .aircraft-card { padding: 2rem 1.5rem 1.75rem; }
+            .management { padding: 4rem 1.25rem 6rem; }
+            .management-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+            .management-card { padding: 2rem 1.5rem 1.75rem; }
+            .management-card h3 { font-size: 1.375rem; }
+            .management-card p { font-size: 0.85rem; }
             .card-action { opacity: 1; transform: translateX(0); top: 1.5rem; right: 1.5rem; }
             .aircraft-silhouette { height: 120px; margin-bottom: 1.5rem; }
             .aircraft-silhouette img { max-width: 280px; max-height: 110px; }
@@ -573,6 +654,7 @@
                     <div class="logo">PB JETS</div>
                     <nav>
                         <a href="#fleet">Fleet</a>
+                        <a href="#management">Management</a>
                         <a href="#" onclick="openOverlay('General Inquiry'); return false;">Contact</a>
                     </nav>
                 </div>
@@ -693,6 +775,53 @@
                                 </div>
                             </div>
                         </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="management" id="management">
+                <div class="management-inner">
+                    <div class="section-header">
+                        <h2>Aircraft Management</h2>
+                        <p>Complete oversight for your aircraft</p>
+                    </div>
+
+                    <div class="management-grid">
+                        <div class="management-card">
+                            <h3>Maintenance & Airworthiness</h3>
+                            <p>Scheduled and unscheduled maintenance coordination, airworthiness directive compliance, component tracking, and vendor management to keep your aircraft in peak condition.</p>
+                        </div>
+
+                        <div class="management-card">
+                            <h3>Crew Management</h3>
+                            <p>Pilot hiring, training, and scheduling. Flight attendant services. Full compliance with crew duty time regulations and recurrent training programs.</p>
+                        </div>
+
+                        <div class="management-card">
+                            <h3>Regulatory Compliance</h3>
+                            <p>FAA Part 91 operations oversight, comprehensive record keeping, safety management systems, and audit preparation to ensure full regulatory compliance.</p>
+                        </div>
+
+                        <div class="management-card">
+                            <h3>Insurance & Risk</h3>
+                            <p>Policy management and claims coordination, risk assessment, and coverage optimization to protect your investment.</p>
+                        </div>
+
+                        <div class="management-card">
+                            <h3>Operations & Readiness</h3>
+                            <p>Flight planning and dispatch, fuel management, aircraft positioning, and 24/7 availability ensuring your aircraft is ready when you need it.</p>
+                        </div>
+
+                        <div class="management-card">
+                            <h3>Administrative</h3>
+                            <p>Budget management and reporting, vendor coordination, and transparent owner communication. Complete administrative oversight.</p>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <a href="#" onclick="openOverlay('Aircraft Management Inquiry'); return false;" class="management-cta">
+                            Inquire About Management
+                        </a>
                     </div>
                 </div>
             </section>
