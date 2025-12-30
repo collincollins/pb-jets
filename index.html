@@ -74,6 +74,7 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            touch-action: manipulation;
         }
 
         main {
@@ -544,6 +545,8 @@
             .logo { font-size: 1.1rem; }
             nav { gap: 1rem; flex-wrap: wrap; justify-content: center; }
             nav a { font-size: 0.75rem; }
+            .nav-management { font-size: 0; }
+            .nav-management::after { content: "Manage"; font-size: 0.75rem; }
             .hero h1 { font-size: 2.75rem; }
             .hero-subtitle { font-size: 0.65rem; letter-spacing: 0.25em; margin-bottom: 3rem; }
             .hero-cta { padding: 1rem 2rem; font-size: 0.7rem; }
@@ -660,7 +663,7 @@
                     <nav>
                         <a href="#fleet">Fleet</a>
                         <a href="inventory.html">Inventory</a>
-                        <a href="#management">Management</a>
+                        <a href="#management" class="nav-management">Management</a>
                         <a href="#" onclick="openOverlay('General Inquiry'); return false;">Contact</a>
                     </nav>
                 </div>
