@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="PB JETS – Aircraft For Sale. Premium pre-owned aircraft from Palm Beach.">
     <meta name="theme-color" content="#1F4466">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>PB JETS – Aircraft Inventory</title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VKB8FT0NF8"></script>
@@ -22,29 +24,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Basically+A+Sans+Serif:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- Preload caravan images for instant display -->
-    <link rel="preload" as="image" href="images/caravan/1.jpeg">
-    <link rel="preload" as="image" href="images/caravan/2.jpeg">
-    <link rel="preload" as="image" href="images/caravan/3.jpeg">
-    <link rel="preload" as="image" href="images/caravan/4.jpeg">
-    <link rel="preload" as="image" href="images/caravan/5.jpeg">
-    <link rel="preload" as="image" href="images/caravan/6.jpeg">
-    <link rel="preload" as="image" href="images/caravan/7.jpeg">
-    <link rel="preload" as="image" href="images/caravan/8.jpeg">
-    <link rel="preload" as="image" href="images/caravan/9.jpeg">
-    <link rel="preload" as="image" href="images/caravan/10.jpeg">
-    <link rel="preload" as="image" href="images/caravan/11.jpeg">
-    <link rel="preload" as="image" href="images/caravan/12.jpeg">
-    <link rel="preload" as="image" href="images/caravan/13.jpeg">
-    <link rel="preload" as="image" href="images/caravan/14.jpeg">
-    <link rel="preload" as="image" href="images/caravan/15.jpeg">
-    <link rel="preload" as="image" href="images/caravan/16.jpeg">
-    <link rel="preload" as="image" href="images/caravan/17.jpeg">
-    <link rel="preload" as="image" href="images/caravan/18.jpeg">
-    <link rel="preload" as="image" href="images/caravan/19.jpeg">
-    <link rel="preload" as="image" href="images/caravan/20.jpeg">
-    <link rel="preload" as="image" href="images/caravan/21.jpeg">
-    <link rel="preload" as="image" href="images/caravan/22.jpeg">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
@@ -81,6 +60,7 @@
         body::-webkit-scrollbar { display: none; }
 
         body {
+            background-color: #1F4466;
             background: linear-gradient(180deg, #1F4466 0%, #102540 100%);
             background-attachment: fixed;
             color: #e8e8e8;
@@ -917,7 +897,7 @@
                 registration: 'N2150',
                 year: 2013,
                 status: 'Available',
-                images: Array.from({length: 22}, (_, i) => `images/caravan/${i + 1}.jpeg`),
+                images: Array.from({length: 22}, (_, i) => `images/caravan/${i + 1}.webp`),
                 specs: {
                     airframe: {
                         'Total Time': '9,626.4 hrs',
@@ -1186,19 +1166,37 @@
             }
         });
 
-        // Preload all aircraft images for instant display
-        function preloadImages() {
-            aircraftInventory.forEach(aircraft => {
-                aircraft.images.forEach(src => {
-                    const img = new Image();
-                    img.src = src;
+        // Set skip-intro flag when navigating to index.html
+        // This prevents the intro animation from playing when coming from inventory
+        function setupNavigationHandlers() {
+            document.querySelectorAll('a[href^="index.html"]').forEach(link => {
+                link.addEventListener('click', () => {
+                    sessionStorage.setItem('pb-jets-skip-intro', 'true');
                 });
             });
         }
 
+        // Preload all aircraft images sequentially for instant display
+        async function preloadImagesSequentially() {
+            const allImages = [];
+            aircraftInventory.forEach(aircraft => {
+                aircraft.images.forEach(src => allImages.push(src));
+            });
+
+            for (const src of allImages) {
+                await new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = resolve;
+                    img.onerror = resolve; // Continue even if one fails
+                    img.src = src;
+                });
+            }
+        }
+
         // Initialize
         renderInventoryGrid();
-        preloadImages();
+        setupNavigationHandlers();
+        preloadImagesSequentially();
     </script>
 </body>
 </html>

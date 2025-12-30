@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="PB JETS – Fly private. Live longer. Private aviation from Palm Beach.">
     <meta name="theme-color" content="#1F4466">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>PB JETS – Fly Private. Live Longer.</title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VKB8FT0NF8"></script>
@@ -62,6 +64,7 @@
         }
 
         body {
+            background-color: #1F4466;
             background: linear-gradient(180deg, #1F4466 0%, #102540 100%);
             background-attachment: fixed;
             color: #e8e8e8;
@@ -918,20 +921,22 @@
         const intro = document.getElementById('intro');
         const site = document.getElementById('site');
 
-        // Check if intro has already been shown this session
-        if (sessionStorage.getItem('pb-jets-intro-shown')) {
+        // Check if navigating from another page on the site (skip intro)
+        // Flag is set by inventory.html when clicking links back to index
+        if (sessionStorage.getItem('pb-jets-skip-intro')) {
+            // Remove flag immediately so refresh will show animation
+            sessionStorage.removeItem('pb-jets-skip-intro');
             // Skip animation - show site immediately
             intro.style.display = 'none';
             site.classList.add('visible');
             site.style.animation = 'none';
             site.style.opacity = '1';
         } else {
-            // First visit - show animation
+            // Fresh visit or refresh - show animation
             setTimeout(() => {
                 intro.classList.add('fade-out');
                 site.classList.add('visible');
                 window.scrollTo(0, 0);
-                sessionStorage.setItem('pb-jets-intro-shown', 'true');
             }, 3200);
         }
 
