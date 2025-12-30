@@ -6,6 +6,7 @@ mkdir -p dist
 # Copy all files to dist
 cp -r images dist/
 cp index.html dist/
+cp inventory.html dist/
 
 # Replace environment variable placeholders with actual values
 # Works on both macOS and Linux

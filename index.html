@@ -171,14 +171,14 @@
 
         .logo:hover { color: #f5f5f5; }
 
-        nav { display: flex; gap: 3rem; }
+        nav { display: flex; gap: 2rem; }
 
         nav a {
             color: rgba(245, 245, 245, 0.7);
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 0.85rem;
             font-weight: 300;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             transition: color 0.3s ease;
         }
@@ -525,7 +525,8 @@
 
         @media (max-width: 900px) {
             .hero-nav { padding: 2rem 2.5rem; }
-            nav { gap: 2rem; }
+            nav { gap: 1.5rem; }
+            nav a { font-size: 0.8rem; }
             .fleet { padding: 6rem 2.5rem 8rem; }
             .fleet-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
             .management { padding: 6rem 2.5rem 8rem; }
@@ -537,8 +538,8 @@
         @media (max-width: 449px) {
             .hero-nav { padding: 1.5rem; flex-direction: column; gap: 1.25rem; }
             .logo { font-size: 1.1rem; }
-            nav { gap: 1.75rem; }
-            nav a { font-size: 1.1rem; }
+            nav { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+            nav a { font-size: 0.75rem; }
             .hero h1 { font-size: 2.75rem; }
             .hero-subtitle { font-size: 0.65rem; letter-spacing: 0.25em; margin-bottom: 3rem; }
             .hero-cta { padding: 1rem 2rem; font-size: 0.7rem; }
@@ -654,6 +655,7 @@
                     <div class="logo">PB JETS</div>
                     <nav>
                         <a href="#fleet">Fleet</a>
+                        <a href="inventory.html">Inventory</a>
                         <a href="#management">Management</a>
                         <a href="#" onclick="openOverlay('General Inquiry'); return false;">Contact</a>
                     </nav>
@@ -789,27 +791,32 @@
                     <div class="management-grid">
                         <div class="management-card">
                             <h3>Maintenance & Airworthiness</h3>
-                            <p>Personalized coordination of scheduled and unscheduled maintenance, airworthiness directive compliance, component tracking, and vendor relationships to ensure your aircraft remains in top condition.</p>
+                            <p>Scheduled and unscheduled maintenance coordination, airworthiness directive compliance, component tracking, and vendor management to keep your aircraft in peak condition.</p>
                         </div>
 
                         <div class="management-card">
                             <h3>Crew Management</h3>
-                            <p>Support for pilot sourcing, training coordination, and scheduling. Flight attendant arrangements as needed. Ensuring full compliance with crew duty time regulations and recurrent training requirements.</p>
+                            <p>Pilot hiring, training, and scheduling. Flight attendant services. Full compliance with crew duty time regulations and recurrent training programs.</p>
+                        </div>
+
+                        <div class="management-card">
+                            <h3>Regulatory Compliance</h3>
+                            <p>FAA Part 91 operations oversight, comprehensive record keeping, safety management systems, and audit preparation to ensure full regulatory compliance.</p>
                         </div>
 
                         <div class="management-card">
                             <h3>Insurance & Risk</h3>
-                            <p>Assistance with policy review and management, claims coordination, risk assessments, and coverage recommendations to safeguard your investment.</p>
+                            <p>Policy management and claims coordination, risk assessment, and coverage optimization to protect your investment.</p>
                         </div>
 
                         <div class="management-card">
                             <h3>Operations & Readiness</h3>
-                            <p>Oversight of aircraft readiness, fuel management guidance, positioning coordination, and responsive support to ensure your aircraft is mission-ready when required.</p>
+                            <p>Flight planning and dispatch, fuel management, aircraft positioning, and 24/7 availability ensuring your aircraft is ready when you need it.</p>
                         </div>
 
                         <div class="management-card">
                             <h3>Administrative</h3>
-                            <p>Hands-on budget tracking and reporting, vendor coordination, and clear, transparent communication with you as the owner.</p>
+                            <p>Budget management and reporting, vendor coordination, and transparent owner communication. Complete administrative oversight.</p>
                         </div>
                     </div>
 
