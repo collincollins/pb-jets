@@ -172,6 +172,7 @@
             text-transform: uppercase;
             color: rgba(245, 245, 245, 0.7);
             transition: color 0.3s ease;
+            text-decoration: none;
         }
 
         .logo:hover { color: #f5f5f5; }
@@ -207,6 +208,100 @@
             position: relative;
             z-index: 1;
             max-width: 900px;
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-content.shifted {
+            transform: translateY(-15vh);
+        }
+
+        .about {
+            max-width: 800px;
+            margin: 15vh auto 4rem;
+            padding: 0 2rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .about.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about h2 {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            color: #e8e8e8;
+            margin-bottom: 1rem;
+        }
+
+        .about-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Filter for "stealth wealth" vibe - slightly muted */
+            filter: grayscale(20%) contrast(110%);
+            /* Dissolve effect using gradient mask - dramatic fade at edges */
+            mask-image: radial-gradient(
+                ellipse 90% 90% at center,
+                black 55%,
+                rgba(0,0,0,0.6) 75%,
+                rgba(0,0,0,0.2) 88%,
+                transparent 98%
+            );
+            -webkit-mask-image: radial-gradient(
+                ellipse 90% 90% at center,
+                black 55%,
+                rgba(0,0,0,0.6) 75%,
+                rgba(0,0,0,0.2) 88%,
+                transparent 98%
+            );
+        }
+
+        .about p {
+            font-family: 'Basically A Sans Serif', sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(232, 232, 232, 0.4);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+            text-align: justify;
+        }
+
+        .about strong {
+            color: rgba(245, 245, 245, 0.9);
+            font-weight: 400;
+        }
+
+        @media (max-width: 900px) {
+            .hero-content.shifted { transform: translateY(-12vh); }
+            .about { margin-top: 10vh; }
+        }
+
+        @media (max-width: 449px) {
+            .about h2 { font-size: 1.75rem; }
+            .about { margin-top: 8vh; }
+            .about p { font-size: 0.9rem; }
+            .about-image {
+                width: 160px;
+                height: 160px;
+            }
         }
 
         .hero h1 {
@@ -664,7 +759,7 @@
         <main>
             <section class="hero" id="home">
                 <div class="hero-nav">
-                    <div class="logo">PB JETS</div>
+                    <a href="index.html" class="logo">PB JETS</a>
                     <nav>
                         <a href="#fleet">Fleet</a>
                         <a href="inventory.html">Inventory</a>
@@ -682,6 +777,16 @@
                         </svg>
                     </a>
                 </div>
+            </section>
+
+            <section class="about" id="about">
+                <h2>The Founder</h2>
+                <div class="about-image">
+                    <img src="images/founder.jpeg" alt="John E. Greif IV">
+                </div>
+                <p><strong>John E. Greif IV (Johnny)</strong> is the founder of PB JETS, a boutique private aviation firm offering discreet jet charter brokerage and comprehensive aircraft management services for its clients.</p>
+                <p>A U.S. Air Force veteran and lifelong aviator, Johnny brings over 25 years of aviation experience, including leadership roles at Tropic Air (founded by his father in 1979) and Southern Airways Express. In his nearly decade of service in the U.S. Air Force, it forged the discipline and integrity that remain his North Star in everything he does.</p>
+                <p>Operating as a dedicated division of his established firm, Aerogen, Inc., PB JETS delivers unbiased aircraft selection, flawless charter execution, and expert management—from maintenance and crew oversight to regulatory compliance. Based in West Palm Beach with his wife and children, Johnny builds enduring client relationships rooted in trust.</p>
             </section>
 
             <section class="fleet" id="fleet">
@@ -928,6 +1033,15 @@
 
         const intro = document.getElementById('intro');
         const site = document.getElementById('site');
+        const heroContent = document.querySelector('.hero-content');
+        const aboutSection = document.getElementById('about');
+
+        function triggerAnimations() {
+            setTimeout(() => {
+                heroContent.classList.add('shifted');
+                aboutSection.classList.add('visible');
+            }, 800);
+        }
 
         // Check if navigating from another page on the site (skip intro)
         // Flag is set by inventory.html when clicking links back to index
@@ -939,12 +1053,18 @@
             site.classList.add('visible');
             site.style.animation = 'none';
             site.style.opacity = '1';
+            // Trigger content shift immediately
+            setTimeout(() => {
+                heroContent.classList.add('shifted');
+                aboutSection.classList.add('visible');
+            }, 100);
         } else {
             // Fresh visit or refresh - show animation
             setTimeout(() => {
                 intro.classList.add('fade-out');
                 site.classList.add('visible');
                 window.scrollTo(0, 0);
+                triggerAnimations();
             }, 3200);
         }
 
