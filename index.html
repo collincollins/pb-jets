@@ -208,11 +208,6 @@
             position: relative;
             z-index: 1;
             max-width: 900px;
-            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .hero-content.shifted {
-            transform: translateY(-15vh);
         }
 
         .about {
@@ -234,7 +229,7 @@
 
         .about h2 {
             font-family: 'Basically A Sans Serif', sans-serif;
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 3.25rem);
             font-weight: 300;
             letter-spacing: 0.04em;
             color: #e8e8e8;
@@ -278,7 +273,7 @@
             font-size: 1rem;
             font-weight: 300;
             line-height: 1.8;
-            color: rgba(232, 232, 232, 0.4);
+            color: rgba(232, 232, 232, 0.7);
             margin-bottom: 1.5rem;
             letter-spacing: 0.05em;
             text-align: justify;
@@ -290,12 +285,10 @@
         }
 
         @media (max-width: 900px) {
-            .hero-content.shifted { transform: translateY(-12vh); }
             .about { margin-top: 10vh; }
         }
 
         @media (max-width: 449px) {
-            .about h2 { font-size: 1.75rem; }
             .about { margin-top: 8vh; }
             .about p { font-size: 0.9rem; }
             .about-image {
@@ -784,7 +777,7 @@
                 <div class="about-image">
                     <img src="images/founder.jpeg" alt="John E. Greif IV">
                 </div>
-                <p><strong>John E. Greif IV (Johnny)</strong> is the founder of PB JETS, a boutique private aviation firm offering discreet jet charter brokerage and comprehensive aircraft management services for its clients.</p>
+                <p><strong>John E. Greif IV</strong> is the founder of PB JETS, a boutique private aviation firm offering discreet jet charter brokerage and comprehensive aircraft management services for its clients.</p>
                 <p>A U.S. Air Force veteran and lifelong aviator, Johnny brings over 25 years of aviation experience, including leadership roles at Tropic Air (founded by his father in 1979) and Southern Airways Express. In his nearly decade of service in the U.S. Air Force, it forged the discipline and integrity that remain his North Star in everything he does.</p>
                 <p>Operating as a dedicated division of his established firm, Aerogen, Inc., PB JETS delivers unbiased aircraft selection, flawless charter execution, and expert management—from maintenance and crew oversight to regulatory compliance. Based in West Palm Beach with his wife and children, Johnny builds enduring client relationships rooted in trust.</p>
             </section>
@@ -1033,12 +1026,10 @@
 
         const intro = document.getElementById('intro');
         const site = document.getElementById('site');
-        const heroContent = document.querySelector('.hero-content');
         const aboutSection = document.getElementById('about');
 
         function triggerAnimations() {
             setTimeout(() => {
-                heroContent.classList.add('shifted');
                 aboutSection.classList.add('visible');
             }, 800);
         }
@@ -1053,9 +1044,8 @@
             site.classList.add('visible');
             site.style.animation = 'none';
             site.style.opacity = '1';
-            // Trigger content shift immediately
+            // Trigger about section visibility immediately
             setTimeout(() => {
-                heroContent.classList.add('shifted');
                 aboutSection.classList.add('visible');
             }, 100);
         } else {
